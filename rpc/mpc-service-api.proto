@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "./pkg/api/v1";
+
+package privatus.mpc.api;
+
+service MPC {
+  rpc Prime (PrimeGenRequest) returns (PrimeGenReply) {}
+}
+
+message PrimeGenRequest {
+  int32 size = 1;
+}
+
+message PrimeGenReply {
+  string prime = 1;
+  string gen = 2;
+  string error = 3;  
+}

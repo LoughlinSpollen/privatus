@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package privatus.ml.api;
+option go_package = "./pkg/api/v1";
+
+service ML {
+  rpc Training (TrainingRequest) returns (TrainingReply) {}
+}
+
+message TrainingRequest {
+  repeated string states = 1;
+}
+
+message TrainingReply {
+  repeated string states = 1;
+  string error = 2;
+}
+
