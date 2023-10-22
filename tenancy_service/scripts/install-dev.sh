@@ -20,7 +20,7 @@ echo "" >> ~/.zshrc
 GOPATH=$(go env GOPATH)
 echo "wrting 'GOPATH=${GOPATH}/go' to ~/.zshrc"
 echo "export GOPATH=${GOPATH}/go" >> ~/.zshrc
-echo 'export PATH=$PATH:$GOPATH' >> ~/.zshrc
+echo 'export PATH="$PATH:$GOPATH"' >> ~/.zshrc
 unset GOPATH
 
 GOROOT=$(go env GOROOT)
@@ -30,8 +30,8 @@ unset GOROOT
 
 echo "wrting 'GOBIN=$GOPATH/bin' to ~/.zshrc"
 echo "export GOBIN=$GOPATH/bin" >> ~/.zshrc
-echo "export PATH=$PATH:$GOROOT/bin" >> ~/.zshrc
-echo "export PATH=$PATH:$GOPATH/bin" >> ~/.zshrc
+echo 'export PATH="$PATH:$GOROOT/bin"' >> ~/.zshrc
+echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.zshrc
 
 # eval source ~/.zshrc # try reload shel - source is not loading
 exec $SHELL -l
