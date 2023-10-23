@@ -1,0 +1,6 @@
+#include <privatus>
+
+int main() {
+
+
+}

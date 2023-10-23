@@ -1,0 +1,11 @@
+#ifndef PRIVATUS_FEDERATION_LIBRARY_H
+#define PRIVATUS_FEDERATION_LIBRARY_H
+
+// Domain layer
+#include "domain/model/FederationConfig.hpp"
+// Infrastructure layer
+#include "infra/network/FederationService.hpp"
+// Usecase layer
+#include "usecase/RegisterUsecase.hpp"
+
+#endif
