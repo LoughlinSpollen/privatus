@@ -1,24 +1,33 @@
 #include <string>
 
+#include "domain/model/FederationConfig.hpp"
+
 #ifndef REGISTER_USECASE_H
 #define REGISTER_USECASE_H
 
+class FederationClient;
+class FederationConfig;
+
 namespace usecase {
 
-class RegisterUseCase {
+class RegisterUsecase {
 public:
     /// Constructor
     /// @param mlModel the MLModel ID that identifies the federation
-    /// @param callback the callback federation event listener
-    RegisterUseCase(std::string mlModelId, const function &callback);
+    /// @param federationClient the network gRPC client
+    RegisterUsecase(const std::string &mlModelId, std::shared_ptr<FederationClient> federationClient);
+
+    /// Destructor
+    ~RegisterUsecase();
 
     /// Get the training configuration
     /// @return federation configuration
-    FederationConfig getTrainingConfig() const;
+    std::shared_ptr<FederationConfig> GetTrainingConfig() const;
 
 private:
-    std::string m_MlModel;
-    function m_Callback;
+    const std::string m_MlModelId;
+    const std::shared_ptr<FederationClient> m_FederationClient;
+    std::shared_ptr<FederationConfig> m_FederationConfig;
 };
 
 }

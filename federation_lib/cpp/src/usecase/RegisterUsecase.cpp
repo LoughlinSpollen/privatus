@@ -1,21 +1,22 @@
-#include "Federation.h"
+#include "../../../include/domain/model/FederationConfig.hpp"
 
-namespace privatus {
+#include "../../../include/infra/network/FederationClient.hpp"
+#include "../../../include/usecase/RegisterUsecase.hpp"
 
-Federation::Federation(const std::string &modelName) : m_ModelName(modelName) {
+namespace usecase {
 
-}
-
-Federation::~Federation() {
-
-}
-
-void Federation::Register() {
+RegisterUsecase::RegisterUsecase(const std::string &modelId, std::shared_ptr<FederationClient> federationClient) : 
+    m_MlModelId(modelId),
+    m_FederationClient(federationClient) {
 
 }
 
-FederationConfig& Federation::GetFederationConfig() const {
-    return *m_FederationConfig;
+RegisterUsecase::~RegisterUsecase() {
+
+}
+
+std::shared_ptr<FederationConfig> RegisterUsecase::GetTrainingConfig() const {
+    return m_FederationConfig;
 }
 
 }

@@ -2,27 +2,26 @@
 #include <pybind11/stl.h>
 
 #include "../cpp/include/usecase/RegisterUsecase.hpp"
+#include "../cpp/include/domain/model/MemberState.hpp"
 
 namespace py = pybind11;
 
-void init_privatus(py::module &m) {
-    
-    py::class_<vehicles::Motorcycle>(m, "Motorcycle")
-    .def(py::init<std::string>(), py::arg("name"))
-    .def("get_name",
-         py::overload_cast<>( &vehicles::Motorcycle::get_name, py::const_))
-    .def("ride",
-         py::overload_cast<std::string>( &vehicles::Motorcycle::ride, py::const_),
-         py::arg("road"));
-}
 
-namespace mcl {
+namespace privatus {
 
 PYBIND11_MODULE(privatus, m) {
-    // Optional docstring
     m.doc() = "Privatus federated learning library";
     
-    init_privatus(m);
+    py::enum_<MemberState>(module, "MemberState")
+        .value("JOINED", domain::EMemberState::JOINED)
+        .value("SECEDED", domain::EMemberState::SECEDED)
+        .export_values();
+
+
+    py::class_<PrivatusLib>(m, "Privatus")
+    .def(py::init([](std::string registered_model_name, py::object federation_state_change_observer) {
+        return std::unique_ptr<PrivatusLib>(new PrivatusLib(registered_model_name, federation_state_change_observer));
+    }))
 }
 
 }

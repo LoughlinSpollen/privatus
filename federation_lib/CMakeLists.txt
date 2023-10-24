@@ -22,7 +22,7 @@ set(PYTHON_LIBRARY "~/.pyenv/shims/versions/3.7.17/lib/python3.7/")
 set(PYTHON_MODULE_EXTENSION ".so" CACHE INTERNAL "Cross python lib extension")
 
 # pybind11 headers
-set(pybind11_DIR "usr/local/include/pybind11")
+set(pybind11_DIR "usr/local/include")
 
 # Disable pybind11 python search mechanism
 set(PYTHONLIBS_FOUND TRUE CACHE INTERNAL "")
