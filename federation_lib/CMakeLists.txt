@@ -11,6 +11,8 @@ endif()
 set(CMAKE_CXX_FLAGS "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+message(STATUS "1 -------------------------------------" )
+
 # If you are using a different py verions: 
 # find site-packages  python -c 'import site; print(site.getsitepackages())'
 set(PYTHON_LIBRARY_DIR "~/.pyenv/shims/versions/3.7.17/lib/python3.7/site-packages")
@@ -32,6 +34,8 @@ project(privatus)
 include_directories("${CMAKE_SOURCE_DIR}/cpp/include/domain/model" "${CMAKE_SOURCE_DIR}/cpp/include/infra/network" "${CMAKE_SOURCE_DIR}/cpp/include/usecase")
 include_directories("${CMAKE_SOURCE_DIR}/python")
 
+include_directories("${PYTHON_INCLUDE_DIR}")
+
 file (GLOB SOURCE_FILES "cpp/src/domain/model/*.cpp" "cpp/src/infra/network/*.cpp" "cpp/src/usecase/*.cpp")
 file (GLOB HEADER_FILES "cpp/include/domain/model/*.hpp" "cpp/include/infra/network/*.hpp" "/cpp/include/usecase/*.hpp")
 file (GLOB PYTHON_FILES "python/*.cpp" "python/*.hpp")
@@ -48,7 +52,12 @@ pybind11_add_module(privatus
 
 target_link_libraries(privatus PUBLIC)
 
+message(STATUS "2 -------------------------------------" )
+
+
 install(TARGETS privatus
   COMPONENT python
   LIBRARY DESTINATION "${PYTHON_LIBRARY_DIR}"
 )
+
+message(STATUS "3 -------------------------------------" )

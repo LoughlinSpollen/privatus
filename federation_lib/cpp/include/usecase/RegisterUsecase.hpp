@@ -1,6 +1,6 @@
 #include <string>
 
-#include "domain/model/FederationConfig.hpp"
+#include "FederationConfig.hpp"
 
 #ifndef REGISTER_USECASE_H
 #define REGISTER_USECASE_H

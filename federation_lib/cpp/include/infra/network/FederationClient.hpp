@@ -1,6 +1,9 @@
 #ifndef MOTORCYCLE_H
 #define MOTORCYCLE_H
 
+#include<string>
+#include<functional>
+
 // Observer pattern - callback function from C++ to Python
 using FederationStateChangeObserver = std::function<bool(std::string, long)>;
 

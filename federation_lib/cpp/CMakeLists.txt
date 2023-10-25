@@ -6,6 +6,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(privatus VERSION 0.1.0)
 
+message(STATUS "4 -------------------------------------" )
+
+
+include_directories(~/.pyenv/shims/versions/3.7.17/include/python3.7m/)
+
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
@@ -33,6 +38,8 @@ set(SOURCE_FILES
     ${PROJECT_USECASE_INCLUDE_DIR}/RegisterUsecase.hpp
     ${PROJECT_USECASE_SOURCE_DIR}/RegisterUsecase.cpp
 )
+message(STATUS "5 -------------------------------------" )
+
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
 
@@ -45,3 +52,6 @@ install(FILES include/PrivatusLib DESTINATION include)
 install(DIRECTORY ${PROJECT_MODEL_INCLUDE_DIR} DESTINATION include)
 install(DIRECTORY ${PROJECT_INFRA_INCLUDE_DIR} DESTINATION include)
 install(DIRECTORY ${PROJECT_USECASE_INCLUDE_DIR} DESTINATION include)
+
+
+message(STATUS "6 -------------------------------------" )

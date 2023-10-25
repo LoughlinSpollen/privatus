@@ -1,4 +1,4 @@
-#include "../../../include/domain/model/FederationConfig.hpp"
+#include "FederationConfig.hpp"
 
 namespace domain {
 

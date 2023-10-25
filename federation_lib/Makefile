@@ -1,4 +1,4 @@
-.PHONY: install-dev build-release build-debug watch test
+.PHONY: install-dev build-release build-debug clean watch test
 .DEFAULT_GOAL := run
 
 install-dev:
@@ -11,6 +11,9 @@ build-release:
 build-debug:
 	@scripts/clean.sh
 	@scripts/build-debug.sh
+
+clean:
+	@scripts/clean.sh
 
 watch:
 	@scripts/watch.sh

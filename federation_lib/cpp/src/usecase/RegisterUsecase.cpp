@@ -1,7 +1,10 @@
-#include "../../../include/domain/model/FederationConfig.hpp"
+#include "RegisterUsecase.hpp"
 
-#include "../../../include/infra/network/FederationClient.hpp"
-#include "../../../include/usecase/RegisterUsecase.hpp"
+#include <string>
+#include <memory>
+
+#include "FederationConfig.hpp"
+#include "FederationClient.hpp"
 
 namespace usecase {
 

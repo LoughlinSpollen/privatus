@@ -1,4 +1,4 @@
-#include "../../../include/infra/network/FederationClient.hpp"
+#include "FederationClient.hpp"
 
 #include <iostream>
 

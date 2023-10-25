@@ -2,11 +2,11 @@
 #define PRIVATUS_FEDERATION_LIBRARY_H
 
 // Domain layer
-#include "domain/model/FederationConfig.hpp"
+#include "FederationConfig.hpp"
 // Infrastructure layer
-#include "infra/network/FederationClient.hpp"
+#include "FederationClient.hpp"
 // Usecase layer
-#include "usecase/RegisterUsecase.hpp"
+#include "RegisterUsecase.hpp"
 
 namespace privatus {
 
@@ -28,9 +28,9 @@ public:
 
 private:
     std::shared_ptr<FederationClient> m_FederationClient;
-    std::shared_ptr<RegisterUsecase> m_RegisterUsecase;
+    std::shared_ptr<usecase::RegisterUsecase> m_RegisterUsecase;
 
 };
 
-
+}
 #endif
