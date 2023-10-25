@@ -3,40 +3,31 @@
 echo "Generating GPRC/Protobuf"
 
 echo "> Generateing Python bindings for mpc services & ml service"
-mkdir -p tmp/build/protos/ml_service_api
-mkdir -p tmp/build/protos/mpc_service_api
+mkdir -p tmp/build/protos/api_federation
+mkdir -p tmp/build/protos/api_tenancy
 
-cp ml-service-api.proto tmp/build/protos/ml_service_api
-cp mpc-service-api.proto tmp/build/protos/mpc_service_api
+cp api-federation.proto tmp/build/protos/api_federation
+cp api-tenancy.proto tmp/build/protos/api_tenancy
 
-cd tmp
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. build/protos/ml_service_api/ml-service-api.proto
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. build/protos/mpc_service_api/mpc-service-api.proto
-cd ..
+rm -rf ../tenancy_service/build/protos/api_tenancy
+rm -rf ../federation_service/build/protos/api_tenancy
+rm -rf ../federation_service/build/protos/api_federation
+rm -rf ../federation_lib/build/protos/api_federation
 
-rm -rf ../mpc_service/build/protos/mpc_service_api
-rm -rf ../federation_service/build/protos/mpc_service_api
-rm -rf ../exchange_service/build/protos/mpc_service_api
-
-mkdir -p ../mpc_service/build/protos/mpc_service_api
-mkdir -p ../federation_service/build/protos/mpc_service_api
-mkdir -p ../exchange_service/build/protos/mpc_service_api
-
-cp tmp/build/protos/mpc_service_api/*.py ../mpc_service/build/protos/mpc_service_api
-cp tmp/build/protos/mpc_service_api/*.py ../federation_service/build/protos/mpc_service_api
-cp tmp/build/protos/mpc_service_api/*.py ../exchange_service/build/protos/mpc_service_api
-
-
-rm -rf ../ml_service/build/protos/ml_service_api
-mkdir -p ../ml_service/build/protos/ml_service_api
-cp tmp/build/protos/ml_service_api/*.py ../ml_service/build/protos/ml_service_api
-
+mkdir -p ../tenancy_service/build/protos/api_tenancy
+mkdir -p ../federation_service/build/protos/api_tenancy
+mkdir -p ../federation_service/build/protos/api_federation
+mkdir -p ../federation_lib/build/protos/api_federation
 
 cd tmp
-echo "> Generating Golang bindings for mpc services & ml service"
-mkdir -p ../../tenancy_service/build/protos/ml_service_api
-mkdir -p ../../tenancy_service/build/protos/mpc_service_api
-protoc --proto_path=build/protos/ml_service_api/ --go_out=../../tenancy_service/build/protos/ml_service_api --go-grpc_out=../../tenancy_service/build/protos/ml_service_api build/protos/ml_service_api/*.proto
-protoc --proto_path=build/protos/mpc_service_api/ --go_out=../../tenancy_service/build/protos/mpc_service_api --go-grpc_out=../../tenancy_service/build/protos/mpc_service_api build/protos/mpc_service_api/*.proto
+echo "> Generating Golang bindings"
+protoc --proto_path=build/protos/api_tenancy/ --go_out=../../tenancy_service/build/protos/api_tenancy --go-grpc_out=../../tenancy_service/build/protos/api_tenancy build/protos/api_tenancy/*.proto
+protoc --proto_path=build/protos/api_tenancy/ --go_out=../../federation_service/build/protos/api_tenancy --go-grpc_out=../../federation_service/build/protos/api_tenancy build/protos/api_tenancy/*.proto
+
+protoc --proto_path=build/protos/api_federation/ --go_out=../../federation_service/build/protos/api_federation --go-grpc_out=../../federation_service/build/protos/api_federation build/protos/api_federation/*.proto
+
+echo "> Generating C++ bindings"
+protoc --proto_path=build/protos/api_federation/ --cpp_out=../../federation_lib/build/protos/api_federation --grpc_out=../../federation_lib/build/protos/api_federation --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` build/protos/api_federation/*.proto
+
 cd ..
 rm -rf tmp

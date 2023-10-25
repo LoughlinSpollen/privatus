@@ -7,7 +7,6 @@ else
   echo 'found golang'
 fi
 
-
 echo "Installing watchexec, run 'make watch' for auto rebuilds of gRPC"
 brew install watchexec
 
@@ -21,3 +20,6 @@ brew install grpc
 
 echo
 brew install protoc-gen-go
+
+echo 
+brew install protoc-gen-grpc-cpp
